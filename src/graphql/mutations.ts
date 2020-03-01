@@ -51,3 +51,14 @@ export const MUTATION_SIGN_IN = gql`
     }
   }
 `;
+
+export interface MutationChangePasswordInput {
+  currentPassword: string;
+  newPassword: string;
+}
+
+export const MUTATION_CHANGE_PASSWORD = gql`
+  mutation changeEmailPassword($currentPassword: String! $newPassword: String!) {
+    changeEmailPassword(password: $currentPassword newPassword: $newPassword) 
+  }
+`;
