@@ -1,5 +1,6 @@
 import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, SafeAreaView } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
+import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
 import React, {
   ReactElement,
   useEffect,
@@ -12,9 +13,8 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneXSize } from '../../utils/Styles';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
-import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
 import { useMutation } from '@apollo/react-hooks';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
