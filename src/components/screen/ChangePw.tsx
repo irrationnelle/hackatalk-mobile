@@ -43,7 +43,8 @@ function ChangePw(props: Props): ReactElement {
   const close = (): void => {
     navigation.goBack();
   };
-  const [mutationChangePassword] = useMutation<{ isChanged: boolean }, MutationChangePasswordInput>(MUTATION_CHANGE_PASSWORD);
+  const [mutationChangePassword] =
+      useMutation<{ isChanged: boolean }, MutationChangePasswordInput>(MUTATION_CHANGE_PASSWORD);
 
   const changePassword = async (): Promise<void> => {
     if (newPw === confirmPw) {
@@ -51,9 +52,9 @@ function ChangePw(props: Props): ReactElement {
         currentPassword: currentPw,
         newPassword: newPw,
       };
-      const isChanged = await mutationChangePassword({variables});
+      const isChanged = await mutationChangePassword({ variables });
 
-      if(isChanged) {
+      if (isChanged) {
         Keyboard.dismiss();
         Alert.alert('', 'Password changed.', [
           {
@@ -63,12 +64,14 @@ function ChangePw(props: Props): ReactElement {
             },
           },
         ]);
-      } else {
-        Alert.alert(getString('Fail to change password'));
+        return;
       }
-    } else {
-      Alert.alert(getString('PASSWORD_MUST_MATCH'));
+
+      Alert.alert(getString('Fail to change password'));
+      return;
     }
+
+    Alert.alert(getString('PASSWORD_MUST_MATCH'));
   };
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const onKeyboardShow = (event: KeyboardEvent): void => setKeyboardOffset(event.endCoordinates.height);
